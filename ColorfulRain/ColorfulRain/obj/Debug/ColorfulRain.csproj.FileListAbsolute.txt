@@ -1,0 +1,9 @@
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\bin\Debug\ColorfulRain.exe.config
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\obj\Debug\ColorfulRain.csprojResolveAssemblyReference.cache
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\obj\Debug\ColorfulRain.RainWindow.resources
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\obj\Debug\ColorfulRain.Properties.Resources.resources
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\obj\Debug\ColorfulRain.csproj.GenerateResource.Cache
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\bin\Debug\ColorfulRain.exe
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\bin\Debug\ColorfulRain.pdb
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\obj\Debug\ColorfulRain.exe
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\obj\Debug\ColorfulRain.pdb
