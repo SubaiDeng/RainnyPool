@@ -47,7 +47,6 @@ namespace ColorfulRain
                 this.CreateGraphics().DrawImage(draw.bmp, 0, 0);
                 Delay(10);
                 draw.rain.count = count;
-                draw.rain.Refresh();
             }
         }
 
@@ -118,7 +117,7 @@ namespace ColorfulRain
 
         private void lightning_Click(object sender, EventArgs e)
         {
-
+            draw.light.status = 1;
         }
     }
 }

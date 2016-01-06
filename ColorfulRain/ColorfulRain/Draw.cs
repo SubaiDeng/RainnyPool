@@ -29,11 +29,13 @@ namespace ColorfulRain
         {
             Graphics g = Graphics.FromImage(bmp);
             g.Clear(Color.Black);
-            SolidBrush b = new SolidBrush(Color.Gray);
+            SolidBrush b = new SolidBrush(Color.SkyBlue);
             g.FillRectangle(b, 0, 500, 1000, 200);
             //画雨
             rain.RainFall(bmp);
-            light.Show(bmp);
+            rain.Refresh();
+            light.drawLight(bmp);
+
         }
     }
 
@@ -149,47 +151,153 @@ namespace ColorfulRain
     }
     class Light
     {
-        public int node;
-        public int size;
-        public Random ran;
-        public int Xsite;
-        public int Ysite;
         public int status;
-
-        public int time;
+        public List<OneLight> LightAry;
+        public int count;
+        public Random ran;
         
         public Light(int r)
         {
             ran = new Random(r);
-            node = ran.Next(7, 12);
-            size = ran.Next(10, 20);
-            Xsite = ran.Next(100, 900);
-            Ysite = ran.Next(0, 20);
-            
+            count  = 0;
+            LightAry = new List<OneLight>();
+            status = 0;
         }
-        public  void Show(Bitmap bmp)
+        public void drawLight(Bitmap bmp)
         {
-            int j = ran.Next(7,12);
-            drawLight(bmp, Xsite,Ysite,j);
-        }
-        private void drawLight(Bitmap bmp,int x,int y, int c)
-        {
-            if (c <= 0)
-                return;
-            int temp = ran.Next(0, 3);
-            int nextX = x + ran.Next(-40, 40);
-            int nextY = y + ran.Next(30, 40);
-            Graphics g = Graphics.FromImage(bmp);
-            g.DrawLine(Pens.Yellow,x,y,nextX,nextY);
-            if (temp == 0)
-            {
-                nextX = x + ran.Next(-40, 40);
-                nextY = y + ran.Next(30, 40);
-                g.DrawLine(Pens.Yellow, x, y, nextX, nextY);
-                drawLight(bmp, nextX, nextY, c - 1);
+             if(status == 1)
+             {
+                OneLight temp = new OneLight(ran.Next());
+                LightAry.Add(temp);
             }
-            drawLight(bmp, nextX, nextY, c - 1);
+            if (LightAry.Count != 0)
+            {
+                List<OneLight> tempList = new List<OneLight>();
+                foreach (var e in LightAry)
+                {
+                    e.DrawOneLight(bmp);
+                    e.Refresh();
+                    if (e.nodeAry.Count == 0)
+                        tempList.Add(e);
+                }
+                foreach (var e in tempList)
+                {
+                    LightAry.Remove(e);
+                }                
+            }
+            status = 0;
+        }
+
+
+    }
+    class OneLight
+    {
+        public int count;
+        public Random ran;
+        public List<LightPoint> nodeAry;
+        public Queue<LightPoint> spread;
+        public int status;
+        public OneLight(int r)
+        {
+            ran = new Random(r);
+            count = ran.Next(7, 12);
+            int Xsite = ran.Next(100, 900);
+            int Ysite = ran.Next(0, 20);
+            LightPoint firstPoint = new LightPoint();
+            firstPoint.front=new Point(Xsite,Ysite);
+            firstPoint.rear = new Point(Xsite+ran.Next(-40,40),Ysite+ran.Next(20,30));
+            firstPoint.alp = 255;
+            firstPoint.status = 1;
+            nodeAry = new List<LightPoint>();
+            spread = new Queue<LightPoint>();
+            spread.Enqueue(firstPoint);
+            nodeAry.Add(firstPoint);
+            status = 0;
+        }
+        public void DrawOneLight( Bitmap bmp)
+        {
+            Graphics g = Graphics.FromImage(bmp);
+            //Pen p = new Pen(Color.White, 3);
+            //g.DrawLine(p, 10, 10,20,20);
+            foreach (var e in nodeAry)
+            { 
+                Color  color = Color.FromArgb(e.alp,Color.Yellow);
+                Pen p = new Pen(color, 3);
+                g.DrawLine(p, e.front, e.rear);
+            }
+        }
+        public void Refresh()
+        {
+            count--;
+            for(int i = 0 ; i < nodeAry.Count;i++)
+            {
+                nodeAry[i].alp -= 10;
+            }
+            List<LightPoint> tempList;
+            tempList = new List<LightPoint>();
+            int j = spread.Count;
+            while (j> 0)
+            {
+                tempList.Add(spread.Dequeue());
+                j --;
+            }
+            if (count >= 0)
+            {
+                foreach (var e in tempList)
+                {
+                    if (e.status == 1)
+                    {
+                        LightPoint mainPoint = new LightPoint();
+                        mainPoint.front = new Point(e.rear.X, e.rear.Y);
+                        mainPoint.rear = new Point(e.rear.X + ran.Next(-40, 40), e.rear.Y + ran.Next(30, 40));
+                        mainPoint.alp = 255;
+                        mainPoint.status = 1;
+                        spread.Enqueue(mainPoint);
+                        nodeAry.Add(mainPoint);
+                    }
+                    else
+                    {
+                        if (ran.Next(0, 3) == 0)
+                        {
+                            LightPoint otherPoint = new LightPoint();
+                            otherPoint.front = new Point(e.rear.X, e.rear.Y);
+                            otherPoint.rear = new Point(e.rear.X + ran.Next(-40, 40), e.rear.Y + ran.Next(30, 40));
+                            otherPoint.alp = 255;
+                            otherPoint.status = 0;
+                            spread.Enqueue(otherPoint);
+                            nodeAry.Add(otherPoint);
+                        }
+                    }
+                    if (ran.Next(0, 3) == 0)
+                    {
+                        LightPoint otherPoint = new LightPoint();
+                        otherPoint.front = new Point(e.rear.X, e.rear.Y);
+                        otherPoint.rear = new Point(e.rear.X + ran.Next(-40, 40), e.rear.Y + ran.Next(30, 40));
+                        otherPoint.alp = 255;
+                        otherPoint.status = 0;
+                        spread.Enqueue(otherPoint);
+                        nodeAry.Add(otherPoint);
+                    }
+                }         
+            
+            }
+            List<LightPoint> tempAry = new List<LightPoint>();
+            foreach(var e in nodeAry)
+            {
+                if (e.alp <= 0)
+                    tempAry.Add(e);
+            }
+            foreach (var e in tempAry)
+            {
+                nodeAry.Remove(e);
+            }
         }
     }
-
+    class LightPoint
+    {
+        public Point front;
+        public Point rear;
+        public int alp;
+        public int status;
+    }
 }
