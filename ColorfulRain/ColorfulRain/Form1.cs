@@ -45,7 +45,7 @@ namespace ColorfulRain
             {
                 draw.DrawImag();
                 this.CreateGraphics().DrawImage(draw.bmp, 0, 0);
-                Delay(15);
+                Delay(10);
                 draw.rain.count = count;
                 draw.rain.Refresh();
             }
@@ -72,6 +72,53 @@ namespace ColorfulRain
         {
             int value = this.SpeedBar.Value;
             draw.rain.AddSpeed = value;
+        }
+
+        private void DegreeBar_Scroll(object sender, EventArgs e)
+        {
+            int value = this.DegreeBar.Value;
+            switch (value)
+            {
+                case 0:
+                    draw.rain.degree = -3;
+                    break;
+                case 1:
+                    draw.rain.degree = -4;
+                    break;
+                case 2:
+                    draw.rain.degree = -5;
+                    break;
+                case 3:
+                    draw.rain.degree = -6;
+                    break;
+                case 4:
+                    draw.rain.degree = -7;
+                    break;
+                case 5:
+                    draw.rain.degree = 0;
+                    break;
+                case 6:
+                    draw.rain.degree = 7;
+                    break;
+                case 7:
+                    draw.rain.degree = 6;
+                    break;
+                case 8:
+                    draw.rain.degree = 5;
+                    break;
+                case 9:
+                    draw.rain.degree = 4;
+                    break;
+                case 10:
+                    draw.rain.degree = 3;
+                    break;
+                    
+            }
+        }
+
+        private void lightning_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

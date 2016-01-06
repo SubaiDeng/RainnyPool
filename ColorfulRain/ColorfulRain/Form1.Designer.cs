@@ -47,6 +47,7 @@
             this.lightning.TabIndex = 0;
             this.lightning.Text = "电闪雷鸣";
             this.lightning.UseVisualStyleBackColor = true;
+            this.lightning.Click += new System.EventHandler(this.lightning_Click);
             // 
             // windy
             // 
@@ -88,6 +89,7 @@
             this.DegreeBar.Name = "DegreeBar";
             this.DegreeBar.Size = new System.Drawing.Size(130, 45);
             this.DegreeBar.TabIndex = 5;
+            this.DegreeBar.Scroll += new System.EventHandler(this.DegreeBar_Scroll);
             // 
             // RainWindow
             // 

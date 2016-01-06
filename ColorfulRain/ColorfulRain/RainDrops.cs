@@ -25,7 +25,7 @@ namespace ColorfulRain
         public RainDrops(int alpha,int wid,int len,int deg ,int spd,int rand)
         {
             ran = new Random(rand);
-            Alpha = alpha ;
+            Alpha = alpha +ran.Next(0,100);
             GenerateColor();
             Xsite = ran.Next(1,1000);
             Ysite = 0;
@@ -34,7 +34,7 @@ namespace ColorfulRain
             degree = deg;
             destina = 500+ran.Next(0,150);
             status = 0;
-            speed = spd+ran.Next(0,10);
+            speed = spd+ran.Next(0,20);
             wave = new Wave(Xsite,destina);
         }
         private void GenerateColor()
