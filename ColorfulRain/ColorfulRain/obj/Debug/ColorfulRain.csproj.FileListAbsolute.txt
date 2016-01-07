@@ -7,3 +7,8 @@ E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\Col
 E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\bin\Debug\ColorfulRain.pdb
 E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\obj\Debug\ColorfulRain.exe
 E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\obj\Debug\ColorfulRain.pdb
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\bin\Debug\Interop.WMPLib.dll
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\bin\Debug\AxInterop.WMPLib.dll
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\obj\Debug\Interop.WMPLib.dll
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\obj\Debug\AxInterop.WMPLib.dll
+E:\study\专业\数据结构\池塘夜降彩色雨\ColorfulRain\ColorfulRain\ColorfulRain\obj\Debug\ColorfulRain.csproj.ResolveComReference.cache

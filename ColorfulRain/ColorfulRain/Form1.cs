@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Threading;
+using System.Media;
 
 
 namespace ColorfulRain
@@ -26,6 +27,7 @@ namespace ColorfulRain
             SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
             SetStyle(ControlStyles.DoubleBuffer, true); // 双缓冲
             InitializeComponent();
+            axWindowsMediaPlayer1.settings.setMode("loop", true);
         }
 
         private void RainWindow_Load(object sender, EventArgs e)
@@ -64,6 +66,18 @@ namespace ColorfulRain
         {
             int value = this.DenseBar.Value;
             count = (value + 1) * 100;
+            if (value < 3)
+            {
+                axWindowsMediaPlayer1.URL = @"Sound\little.mp3";
+            }
+            else if (value < 7)
+            {
+                axWindowsMediaPlayer1.URL = @"Sound\middle.mp3";
+            }
+            else
+            {
+                axWindowsMediaPlayer1.URL = @"Sound\big.mp3";
+            }
             
         }
 
@@ -118,6 +132,9 @@ namespace ColorfulRain
         private void lightning_Click(object sender, EventArgs e)
         {
             draw.light.status = 1;
+            System.Media.SoundPlayer sp = new SoundPlayer();
+            sp.SoundLocation = @"Sound\light.wav";
+            sp.Play();
         }
     }
 }

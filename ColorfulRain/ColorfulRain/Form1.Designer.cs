@@ -28,15 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RainWindow));
             this.lightning = new System.Windows.Forms.Button();
             this.windy = new System.Windows.Forms.Button();
             this.brash = new System.Windows.Forms.Button();
             this.SpeedBar = new System.Windows.Forms.TrackBar();
             this.DenseBar = new System.Windows.Forms.TrackBar();
             this.DegreeBar = new System.Windows.Forms.TrackBar();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DenseBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DegreeBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // lightning
@@ -91,11 +94,22 @@
             this.DegreeBar.TabIndex = 5;
             this.DegreeBar.Scroll += new System.EventHandler(this.DegreeBar_Scroll);
             // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(12, 562);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(75, 38);
+            this.axWindowsMediaPlayer1.TabIndex = 6;
+            this.axWindowsMediaPlayer1.Visible = false;
+            // 
             // RainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 612);
+            this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.DegreeBar);
             this.Controls.Add(this.DenseBar);
             this.Controls.Add(this.SpeedBar);
@@ -109,6 +123,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SpeedBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DenseBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DegreeBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,6 +137,7 @@
         private System.Windows.Forms.TrackBar SpeedBar;
         private System.Windows.Forms.TrackBar DenseBar;
         private System.Windows.Forms.TrackBar DegreeBar;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }
 }
 
