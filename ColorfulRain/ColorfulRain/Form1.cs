@@ -71,6 +71,7 @@ namespace ColorfulRain
         private void DenseBar_Scroll(object sender, EventArgs e)
         {
             int value = this.DenseBar.Value;
+            axWindowsMediaPlayer1.Ctlcontrols.play();
             if (denseThread != null)
             {
                 denseThread.Abort();
@@ -221,6 +222,7 @@ namespace ColorfulRain
         private void StopButton_Click(object sender, EventArgs e)
         {
             count = 0;
+            axWindowsMediaPlayer1.Ctlcontrols.pause();
         }
     }
 }

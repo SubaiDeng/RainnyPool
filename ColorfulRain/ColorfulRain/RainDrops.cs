@@ -107,10 +107,7 @@ namespace ColorfulRain
             }
             LotusDropRefresh();
         }
-        public void Start()
-        {
-            
-        }
+
 
         public void LotusDropRefresh()
         {

@@ -163,44 +163,28 @@ namespace ColorfulRain
                 {
                     int destX = e.Xsite + (int)(e.length * (e.degree == 0 ? 0 : Math.Sin(Math.PI / e.degree)));
                     int destY = e.Ysite + (int)(e.length * (e.degree == 0 ? 1 : Math.Cos(Math.PI / e.degree)));
-                    bool onTheLotus = false;
-                    foreach(var f in draw.lotusPool.LotusAry)
-                    {
-                        if(true == f.InLotus(destX,destY))
-                        {
-                            onTheLotus = true;
-                        }
-                    }
-                    if (onTheLotus == false)
-                    {
-                        e.onTheLotus = false;
-                        Pen p = new Pen(e.color, e.wide);
-                        p.StartCap = LineCap.Triangle;
-                        p.EndCap = LineCap.Triangle;
-                        Point posA = new Point(e.Xsite, e.Ysite);
-                        Point posB = new Point(destX, destY);
-                        g.DrawLine(p, posA, posB);
-                        p.Dispose();
-                    }
-                    else
-                    {
-                        e.onTheLotus = true;
-                    }
+                    Pen p = new Pen(e.color, e.wide);
+                    p.StartCap = LineCap.Triangle;
+                    p.EndCap = LineCap.Triangle;
+                    Point posA = new Point(e.Xsite, e.Ysite);
+                    Point posB = new Point(destX, destY);
+                    g.DrawLine(p, posA, posB);
+                    p.Dispose();
                 }      
             }
         }
         public void LotusDropDraw(Bitmap bmp)
         {
 
+            
+            Graphics g = Graphics.FromImage(bmp);
+            foreach (var e in lis)
             {
-                Graphics g = Graphics.FromImage(bmp);
-                foreach (var e in lis)
-                {
 
-                    if (e.status == 1 && e.onTheLotus == true)
-                        e.lotusDrop.LotusDropDraw(bmp);
-                }
+                if (e.status == 1 && e.onTheLotus == true)
+                    e.lotusDrop.LotusDropDraw(bmp);
             }
+            
         }
         public void WaveDraw( Bitmap bmp)
         {
@@ -228,6 +212,7 @@ namespace ColorfulRain
                     case 0:
                         e.Xsite = (e.Xsite + (int)((e.length+AddSpeed) * (e.degree == 0 ? 0 : Math.Sin(Math.PI / e.degree)))+1000)%1000;
                         e.Ysite = e.Ysite + (int)((e.length+AddSpeed) * (e.degree == 0 ? 1 : Math.Cos(Math.PI / e.degree)));
+                        e.degree = degree;
                         if (e.Xsite >= 1000)
                             e.Xsite %= 1000;
                         if (e.Ysite >= e.destina)
@@ -238,6 +223,22 @@ namespace ColorfulRain
                             e.wave.Xsite = e.Xsite;
                             e.wave.Ysite = e.Ysite;
                             e.lotusDrop.start(e.Xsite, e.Ysite);
+                            bool onTheLotus = false;
+                            foreach (var f in draw.lotusPool.LotusAry)
+                            {
+                                if (true == f.InLotus(e.Xsite, e.Ysite))
+                                {
+                                    onTheLotus = true;
+                                }
+                            }
+                            if (onTheLotus == true)
+                            {
+                                e.onTheLotus = true;
+                            }
+                            else
+                            {
+                                e.onTheLotus = false;
+                            }
                         }
                         break;
                     case 1:
@@ -322,8 +323,6 @@ namespace ColorfulRain
             }
             status = 0;
         }
-
-
     }
     class OneLight
     {
@@ -402,7 +401,7 @@ namespace ColorfulRain
                             nodeAry.Add(otherPoint);
                         }
                     }
-                    if (ran.Next(0, 3) == 0)
+                    if (ran.Next(0, 2) == 0)
                     {
                         LightPoint otherPoint = new LightPoint();
                         otherPoint.front = new Point(e.rear.X, e.rear.Y);
@@ -476,12 +475,13 @@ namespace ColorfulRain
                     PointF point1;
                     PointF point2;
                     PointF point3;
+                    PointF[] c;
+                    int col = 120;
 
                     point1 = new PointF(e.Xsite+(int)(e.doubleA/2),e.Ysite+(int)(e.doubleB/2));
                     point2 = new PointF(e.Xsite + (int)(e.doubleA / 2) + 20, e.Ysite + (int)(e.doubleB/2) - 3);
                     point3 = new PointF(e.Xsite + (int)(e.doubleA / 2) + 40, e.Ysite + (int)(e.doubleB/2)+3);                
-                   PointF[] c;
-                   int col = 120;
+
                     c = new PointF[3];
                     c[0] = point1;
                     c[1] = point2;
